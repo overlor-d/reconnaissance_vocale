@@ -3,13 +3,13 @@
 
 #define ENCHANTILLONAGE 44100
 #define BITS_PAR_SAMPLE 16
-#define TAILLE_BUFFER (ENCHANTILLONAGE * (BITS_PAR_SAMPLE / 8))
+#define NOMBRE_SECONDE 4
+#define TAILLE_BUFFER (ENCHANTILLONAGE * (BITS_PAR_SAMPLE / 8)) * NOMBRE_SECONDE
 #define T_NORMAL_WORD 50
 
 #define FICHIER_TEST_ENREGISTREMENT "./data/enchantillon"
 
 typedef struct {
-    int id;
     short valeur;
 } POINT_GRAPH;
 

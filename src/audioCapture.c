@@ -2,8 +2,7 @@
 #include <mmsystem.h>
 #include <stdio.h>
 
-#include "audioCapture.h"
-
+#include "AudioCapture.h"
 
 // Fonction pour enregistrer les données audio dans un fichier
 int enregistrement_fichier(short *buffer)
@@ -24,32 +23,8 @@ int enregistrement_fichier(short *buffer)
     for (i = 0; i < TAILLE_BUFFER / 2; i++)
     {
         point.valeur = buffer[i];
-        point.id = i + 1;
 
         fwrite(&point, sizeof(POINT_GRAPH), 1, fichierTestEnregistrement);
-    }
-
-    fclose(fichierTestEnregistrement);
-    return 0;
-}
-
-int lecture_fichier()
-{
-    FILE *fichierTestEnregistrement;
-    POINT_GRAPH point;
-
-    printf("Lecture du fichier :\n");
-
-    fichierTestEnregistrement = fopen(FICHIER_TEST_ENREGISTREMENT, "rb");
-    if (fichierTestEnregistrement == NULL)
-    {
-        printf("Erreur lors de l'ouverture du fichier de test\n");
-        return 3;
-    }
-
-    while (fread(&point, sizeof(POINT_GRAPH), 1, fichierTestEnregistrement) == 1)
-    {
-        printf("Point num %d -> %hd\n", point.id, point.valeur);
     }
 
     fclose(fichierTestEnregistrement);
@@ -128,8 +103,6 @@ int main(void)
     enregistrement_fichier(bufferSonBrut);
 
     printf("Échantillons sauvegardés dans %s\n", FICHIER_TEST_ENREGISTREMENT);
-
-    lecture_fichier();
 
     return 0;
 }
